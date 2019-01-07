@@ -1,0 +1,23 @@
+/* pages/mine/paying/paying.wxss */
+.top-info{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  background-color: white;
+  padding: 20rpx;
+}
+
+.bottom-bar{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  background-color: #ff4c4c;
+  width: 100%;
+  text-align: center;
+  height: 120rpx;
+  line-height: 100rpx;
+}
+.bottom-bar:active{
+  background-color: #c72c2c;
+}

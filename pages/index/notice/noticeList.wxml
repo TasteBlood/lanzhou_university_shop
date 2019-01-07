@@ -1,0 +1,28 @@
+<!--pages/index/notice/noticeList.wxml-->
+<view class='container'>
+  <view wx:if="{{list.length>0}}">
+      <block wx:for="{{list}}" wx:key="index">
+        <view class='notice-item' bindtap='onClick' data-item="{{item}}">
+      <image wx:if="{{item.pic}}" src='{{item.pic}}'></image>
+      <view class='notice-content'>
+        <text class='content'>{{item.title}}</text>
+        <view class='time'>
+          <text>{{item.createTime}}</text>
+        </view>
+      </view>
+    </view>
+    </block>
+  </view>
+  <view wx:else style='text-align:center;padding:20rpx;'>
+    <text style='color:#717171;font-size:30rpx;'>暂无数据</text>
+  </view>
+  <view class='float-modal {{show?"":"hide"}}'>
+    <text class='title'>{{currentItem.title}}</text>
+    <text class='time'>{{currentItem.time}}</text>
+    <block wx:for="{{currentItem.pic}}" wx:key="index">
+      <image src='{{item}}' class='pic'></image>
+    </block>
+    <text class='content'>{{currentItem.content}}</text>
+    <button style='width:200rpx;height:60rpx;font-size:26rpx;margin-top:10rpx;' type='primary' bindtap='onClose'>关闭</button>
+  </view>
+</view>

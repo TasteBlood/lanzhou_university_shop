@@ -1,0 +1,29 @@
+/* pages/index/opinion/history/history.wxss */
+.content-list{
+  display: flex;
+  flex-direction: column;
+}
+
+.content-item{
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 20rpx;
+  margin-bottom: 10rpx;
+}
+
+.item-title{
+  font-size: 34rpx;
+}
+
+.item-plan{
+  font-size: 30rpx;
+  color: #616161;
+}
+
+.item-time{
+  text-align: right;
+  font-size: 30rpx;
+  color: #919191;
+  margin-top: 10rpx;
+}

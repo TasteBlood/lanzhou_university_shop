@@ -1,0 +1,148 @@
+<!--pages/index/like/likeList.wxml-->
+<view class='container'>
+  <view class='drop-menu {{hideMenu?"hideMenu":""}}'>
+    <view class='content'>
+      <view class='content-wrapper'>
+        <view class='restaurantList'>
+          <block wx:for="{{restaurantList}}" wx:key="">
+            <text class='item {{restaurantPos===index?"active":""}}' bindtap='onRestaurantClick' data-position="{{index}}" data-item="{{item}}">{{item.name}}</text>
+          </block>
+        </view>
+        <view class='floorList {{showFloor?"":"hide"}}'>
+          <block wx:for="{{floorList}}" wx:key="">
+            <text class='item {{floorPos===index?"active":""}}' bindtap='onFloorItemClick' data-position="{{index}}" data-item="{{item}}">{{item.name}}</text>
+          </block>
+        </view>
+        <view class='windowList {{showWindow?"":"hide"}}'>
+          <block wx:for="{{windowList}}" wx:key="">
+            <text class='item {{windowPos===index?"active":""}}' bindtap='onWindowItemClick' data-position="{{index}}" data-item="{{item}}">{{item.name}}</text>
+          </block>
+        </view>
+      </view>
+      <view class='bottom-bar' bindtap='onOk'>
+        <text style='color:#ff4c4c;font-size:32rpx'>确定</text>
+      </view>
+    </view>
+  </view>
+  <view class='top-info'>
+    <view class='choose-info'>
+      <text class='choose-button' bindtap='openMenu'>选择</text>
+      <view class='choose-result'>
+        <text wx:if="{{selectData.restaurant.name}}">{{selectData.restaurant.name}}</text>
+        <text wx:if="{{selectData.floor.name}}">{{selectData.floor.name}}</text>
+        <text wx:if="{{selectData.window.name}}">{{selectData.window.name}}</text>
+      </view>
+      <button wx:if="{{selectData.restaurant.name}}" class='default-button clear-button' bindtap='onClear'>×</button>
+    </view>
+    <view class='tab-page'>
+      <view class='swiper-tab'>
+        <view class='swiper-tab-item {{currentTab===0?"selected":""}}' data-current="0" bindtap='onTabClick'>菜品</view>
+        <view class='swiper-tab-item {{currentTab===1?"selected":""}}' data-current="1" bindtap='onTabClick'>厨师</view>
+        <view class='swiper-tab-item {{currentTab===2?"selected":""}}' data-current="2" bindtap='onTabClick'>分菜员</view>
+      </view>
+    </view>
+  </view>
+  <swiper current="{{currentTab}}" duration="200" bindchange="swiperTab" style='height:{{height}}px;'>
+    <!-- 菜品列表 -->
+    <swiper-item>
+      <scroll-view scroll-y style="height:{{height}}px" bindscrolltolower="onDishScroll">
+        <block wx:if="{{dishList.length>0}}">
+          <view class='dish-item' wx:for="{{dishList}}" wx:key="{{index}}" data-did='{{item.id}}'>
+            <block wx:if="{{!item.pic && !item.commonPic}}">
+              <image src='../../../resources/images/ic_no_image.png' class='dish-item-pic' mode='aspectFill' lazy-load></image>
+            </block>
+            <block wx:else>
+              <image src='{{item.pic?item.pic:item.commonPic}}' class='dish-item-pic' mode='aspectFill' lazy-load></image>
+            </block>
+            <view class='dish-item-content'>
+              <view class='name'>
+                <text>{{item.name}}</text>
+                <text wx:if="{{item.type===1}}" class='dish-type'>(早餐)</text>
+                <text wx:elif="{{item.type===2}}" class='dish-type'>(午餐)</text>
+                <text wx:elif="{{item.type===3}}" class='dish-type'>(晚餐)</text>
+                <text wx:elif="{{item.type===4}}" class='dish-type'>(全天)</text>
+              </view>
+              <view class='price'>
+                <text>￥{{item.priceYuan}}</text>
+                <view class='price-panel'>
+                  <image style='width:46rpx;height:46rpx;' src='../../../resources/images/ic_like_thumbs.png'></image>
+                  <text>{{item.click_num}}</text>
+                </view>
+                </view>
+                <view class='address'>
+                  <text>{{item.canteenName}}{{item.floorName}}{{item.windowName}}</text>
+                </view>
+              </view>
+
+            <view>
+              <button class='default-button' style='width:100rpx;height:60rpx;line-height:60rpx;font-size:28rpx;' bindtap='onClickNum' data-did="{{item.id}}" data-type="1" data-item="{{item}}" data-index="{{index}}">赞</button>
+            </view>
+          </view>
+        </block>
+        <block wx:else>
+          <text style='font-size:30rpx;margin:auto;color:#717171'>暂无数据</text>
+        </block>
+      </scroll-view>
+    </swiper-item>
+    <!-- 厨师列表 -->
+    <swiper-item>
+      <scroll-view scroll-y style="height:{{height}}px" bindscrolltolower="onCookScroll">
+        <block wx:if="{{cookList.length>0}}">
+          <view class='cook-item' wx:for="{{cookList}}" wx:key="index" >
+            <block wx:if="{{!item.staffDomain.pic}}">
+              <image src='../../../resources/images/ic_no_image.png' class='dish-item-pic' mode='aspectFill' lazy-load></image>
+            </block>
+            <block wx:else>
+              <image src='{{item.staffDomain.pic}}' class='cook-item-pic' mode='aspectFill' lazy-load></image>
+            </block>
+            <view class='cook-item-content'>
+              <view class='name'>
+                <text>{{item.staffDomain.name}}</text>
+              </view>
+              <view class='cook-item-like'>
+                <image style='width:46rpx;height:46rpx;' src='../../../resources/images/ic_like_thumbs.png'></image>
+                <text style='color:#919191;font-size:32rpx'>{{item.staffDomain.click_num}}</text>
+              </view>
+            </view>
+            <view>
+              <button class='default-button' style='width:100rpx;height:60rpx;line-height:60rpx;font-size:28rpx;' bindtap='onClickNum' data-did="{{item.staffDomain.id}}" data-type="2" data-item="{{item}}" data-index="{{index}}">赞</button>
+            </view>
+          </view>
+        </block>
+        <block wx:else>
+          <text style='font-size:30rpx;margin:auto;color:#717171'>暂无数据</text>
+        </block>
+      </scroll-view>
+    </swiper-item>
+    <!-- 分菜员列表 -->
+    <swiper-item>
+      <scroll-view scroll-y style="height:{{height}}px" bindscrolltolower="onOtherScroll">
+        <block wx:if="{{otherList.length>0}}">
+          <view class='cook-item' wx:for="{{otherList}}" wx:key="index">
+            <block wx:if="{{!item.staffDomain.pic}}">
+              <image src='../../../resources/images/ic_no_image.png' class='dish-item-pic' mode='aspectFill' lazy-load></image>
+            </block>
+            <block wx:else>
+              <image src='{{item.staffDomain.pic}}' class='cook-item-pic' mode='aspectFill' lazy-load></image>
+            </block>
+            <view class='cook-item-content'>
+              <view class='name'>
+                <text>{{item.staffDomain.name}}</text>
+              </view>
+              <view class='cook-item-like'>
+                <image style='width:46rpx;height:46rpx;' src='../../../resources/images/ic_like_thumbs.png'></image>
+                <text style='color:#919191;font-size:32rpx'>{{item.staffDomain.click_num}}</text>
+              </view>
+            </view>
+            <view>
+              <button class='default-button' style='width:100rpx;height:60rpx;line-height:60rpx;font-size:28rpx;' bindtap='onClickNum' data-did="{{item.staffDomain.id}}" data-type="3" data-item="{{item}}" data-index="{{index}}">赞</button>
+            </view>
+          </view>
+        </block>
+        <block wx:else>
+          <text style='font-size:30rpx;margin:auto;color:#717171'>暂无数据</text>
+        </block>
+      </scroll-view>
+    </swiper-item>
+  </swiper>
+</view>

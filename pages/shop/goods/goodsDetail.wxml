@@ -1,0 +1,67 @@
+<!--pages/shop/goods/goodsDetail.wxml-->
+<view class='container'>
+  <scroll-view class='main-content' scroll-y style='height:{{height}}px'>
+    <!-- 上面的轮播图 -->
+    <swiper indicator-dots="true" indicator-color="rgba(0,0,0,0.2)" indicator-active-color="rgba(255,0,0,0.4)" autoplay duration='3000'>
+      <swiper-item wx:for="{{goods.pics}}" wx:key="{{inedx}}">
+        <image src='{{item}}' class='pic' mode='aspectFit' lazy-load></image>
+      </swiper-item>
+    </swiper>
+    <!-- 下面的商品详情 -->
+    <view class='main-info'>
+      <view class='price-panel'>
+        <block wx:if="{{goods.salesProductDomain}}">
+          <text style='color:#ff4c4c;font-size:36rpx;'>￥{{goods.salesProductDomain.sales_yuan}}<text style='color:#717171;text-decoration:line-through;font-size:30rpx;margin-left:10rpx;'>￥{{goods.sell_price_yuan}}</text></text>
+          <text style='color:#717171;font-size:30rpx;margin-left:10rpx;'>{{goods.purchase}}人已购买</text>
+        </block>
+        <block wx:else>
+          <text style='color:#ff4c4c;fonts-size:36rpx;'>￥{{goods.sell_price_yuan}}</text>
+          <text style='color:#717171;font-size:30rpx;margin-left:10rpx;'>{{goods.purchase}}人已购买</text>
+        </block>
+      </view>
+      <text style='font-size:32rpx'>{{goods.name}}</text>
+      <view class='sell-panel' wx:if="{{goods.salesProductDomain}}">
+        <text class='sell-item'>{{goods.salesProductDomain.salesDomain.name}}</text>
+      </view>
+    </view>
+    <view class='num-panel'>
+      <text style='font-size:32rpx;color:#515151'>已选</text>
+      <view class='num-tab'>
+        <image src='../../../resources/images/minus.png' bindtap='onMinus'></image>
+        <input style='width:100rpx;text-align:center;color:#616161;font-size:30rpx;' value='{{number}}' maxlength='3' type='number' bindinput="onInput"></input>
+        <image src='../../../resources/images/plus.png' bindtap='onPlus'></image>
+      </view>
+      <text style='font-size:28rpx;color:#717171;margin-left:20rpx;' wx:if="{{goods.purchase_limit>=0}}">(最大限购{{goods.purchase_limit}})</text>
+    </view>
+    <view class='main-desc'>
+      <text style='font-size:32rpx;color:#515151'>商品详情</text>
+      <rich-text nodes="{{goods.detail}}" style='width:100%;'></rich-text>
+    </view>
+
+  </scroll-view>
+  <!-- bottom bar -->
+  <view class='bottom-bar'>
+    <view class='left-panel'>
+      <view class='bottom-menu' bindtap='onContactClick'>
+        <image src='../../../resources/images/contact.png'></image>
+        <text>商家</text>
+      </view>
+      <view class='bottom-menu' bindtap='onCollectClick'>
+        <image src='../../../resources/images/ic_collect.png'></image>
+        <text>收藏</text>
+      </view>
+      <view class='bottom-menu' bindtap='onShopCarClick'>
+        <image src='../../../resources/images/ic_shopcar.png'></image>
+        <text>购物车</text>
+      </view>
+    </view>
+    <view class='right-panel'>
+      <view class='shop-button' bindtap='onAddClick'>
+        加入购物车
+      </view>
+      <view class='buy-button' bindtap='onBuyClick'>
+        立即购买
+      </view>
+    </view>
+  </view>
+</view>

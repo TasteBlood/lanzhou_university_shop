@@ -1,0 +1,17 @@
+<!--pages/index/opinion/history/history.wxml-->
+<view class='container'>
+  <view class='content-list' wx:if="{{dataList.length>0}}">
+    <block wx:for="{{dataList}}" wx:key="">
+    <view class='content-item'>
+      <text class='item-title'>{{item.content}}</text>
+      <text style='font-size:30rpx;color:#515151;margin-top:10rpx;'>相关回复:<text class='item-plan' wx:if="{{item.service}}">{{item.service}}</text>
+        <text class='item-plan' wx:else>暂无回复</text>
+      </text>
+      <text class='item-time'>{{item.createTime}}</text>
+    </view>
+    </block>
+  </view>
+  <view wx:else style='text-align:center;color:#717171;font-size:32rpx;margin:20rpx;'>
+    <text>暂无数据</text>
+  </view>
+</view>

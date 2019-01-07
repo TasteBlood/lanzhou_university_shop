@@ -1,0 +1,51 @@
+<!--pages/shop/shop.wxml-->
+<view class='container'>
+  <block wx:if="{{goodsList.length>0}}">
+    <scroll-view scroll-y style="height:{{height}}px;margin-top:80rpx;" bindscrolltolower="onScroll">
+      <view class="gridview" style='background:white;'>
+
+        <view class="gridview-item" wx:for="{{goodsList}}" wx:key="{{index}}" bindtap='onGoodsClick' data-gid='{{item.id}}'>
+
+          <view class='gridview-item__bg'>
+
+            <view class='gridview-item__view'>
+              <image src='{{item.pic}}' style='width:100%;height:350rpx;border-bottom:#f1f1f1 solid 1rpx;' mode='aspectFill' lazy-load></image>
+              <view style='padding:10rpx;'>
+                <text class='goods-name'>{{item.name}}</text>
+                <view style='display:flex;flex-direction:row;align-items:center;margin-top:10rpx;'>
+                  <text style="font-size:32rpx;color:#ff4c4c" wx:if="{{item.salesProductDomain}}">￥{{item.salesProductDomain.sales_yuan}}</text>
+                  <text style="font-size:32rpx;color:#ff4c4c" wx:else>￥{{item.sell_price_yuan}}</text>
+                  <text style='font-size:26rpx;margin-left:4rpx;color:#717171'>{{item.purchase}}人购买</text>
+                </view>
+              </view>
+            </view>
+
+          </view>
+
+        </view>
+
+      </view>
+    </scroll-view>
+  </block>
+  <block wx:else>
+    <view style='text-align:center;font-size:30rpx;color:#919191;padding:20rpx;margin-top:80rpx;'>
+      <text>暂无数据</text>
+    </view>
+  </block>
+
+  <view class='search-bar'>
+    <view class='drop-select' bindtap='onDropDown'>
+      <text class="name">分类</text>
+      <image src='../../resources/images/drop-down.png' style='width:54rpx;height:54rpx;'></image>
+    </view>
+    <view class='search-view'>
+      <input type='text' placeholder='请输入关键字查询' class='input' placeholder-style="color:#f1f1f1" bindinput='onInput'></input>
+      <image src='../../resources/images/search.png' class='search-btn' bindtap='onSearch'></image>
+    </view>
+  </view>
+  <view class='drop-modal {{dropDown?"active":""}}'>
+    <view class='content'>
+      <text wx:for="{{cate}}" wx:key="index" class='cate-item {{index===currentIndex?"active":""}}' bindtap='onCateClick' data-did="{{item.id}}" data-index="{{index}}">{{item.name}}</text>
+    </view>
+  </view>
+</view>

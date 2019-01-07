@@ -1,0 +1,34 @@
+/* pages/mine/address/add/editAddress.wxss */
+button{
+  margin: 24rpx !important;
+}
+
+.input-line{
+  padding: 24rpx;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 2rpx;
+}
+
+.input-line.province-city{
+  justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.input-line.province-city:active{
+  background-color: #f8f8f8;
+}
+
+input{
+  font-size: 32rpx;
+  color: #414141;
+  width: 80%;
+}
+
+.picker{
+  font-size: 32rpx;
+  color: #414141;
+}

@@ -1,0 +1,5 @@
+<!--pages/login/login.wxml-->
+<view class='wrapper'>
+  <text style='font-size:32rpx;color:#414141;margin-top:50rpx;'>该操作需要微信登录</text>
+  <button bindtap='login' class='default-button' style='margin-top:100rpx;'>微信登录</button>
+</view>

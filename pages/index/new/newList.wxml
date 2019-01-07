@@ -1,0 +1,126 @@
+<!--pages/index/new/newList.wxml-->
+<view class='container'>
+  <view class='tab-page'>
+    <view class='swiper-tab'>
+      <view class='swiper-tab-item {{currentTab===0?"selected":""}}' data-current="0" bindtap='onTabClick'>早餐</view>
+      <view class='swiper-tab-item {{currentTab===1?"selected":""}}' data-current="1" bindtap='onTabClick'>午餐</view>
+      <view class='swiper-tab-item {{currentTab===2?"selected":""}}' data-current="2" bindtap='onTabClick'>晚餐</view>
+    </view>
+    <swiper current="{{currentTab}}" duration="200"  bindchange="swiperTab" style='height:{{height}}px'>
+      <swiper-item >
+        <scroll-view scroll-y style='height:{{height}}px'>
+          <block wx:if="{{zaocan.length>0}}">
+            <view class='dish-item' wx:for="{{zaocan}}" wx:key="{{index}}" data-did='{{item.id}}'>
+            <block wx:if="{{!item.pic && !item.commonPic}}">
+              <image src='../../../resources/images/ic_no_image.png' class='dish-item-pic' mode='aspectFill' lazy-load></image>
+            </block>
+            <block wx:else>
+              <image src='{{item.pic?item.pic:item.commonPic}}' class='dish-item-pic' mode='aspectFill' lazy-load></image>
+            </block>
+            <view class='dish-item-content'>
+              <view class='name'>
+                <text>{{item.name}}</text>
+              </view>
+              <view class='price'>
+                <text>￥{{item.priceYuan}}</text>
+                <view class='price-panel'>
+                  <image style='width:46rpx;height:46rpx;' src='../../../resources/images/ic_like_thumbs.png'></image>
+                  <text>{{item.click_num}}</text>
+                </view>
+                </view>
+                <view class='address'>
+                  <text>{{item.canteenName}}{{item.floorName}}{{item.windowName}}</text>
+                </view>
+              </view>
+
+            <view>
+              <button class='default-button' style='width:100rpx;height:60rpx;line-height:60rpx;font-size:28rpx;' bindtap='onClickNum' data-did="{{item.id}}" data-type="1" data-item="{{item}}" data-index="{{index}}">赞</button>
+            </view>
+          </view>
+          </block>
+          <block wx:else>
+            <view style='text-align:center;font-size:30rpx;color:#919191'>
+              <text>暂无数据</text>
+            </view>
+          </block>
+        </scroll-view>
+      </swiper-item>
+      <swiper-item>
+         <scroll-view scroll-y style='height:{{height}}px'>
+          <block wx:if="{{wucan.length>0}}">
+            <view class='dish-item' wx:for="{{wucan}}" wx:key="{{index}}" data-did='{{item.id}}'>
+            <block wx:if="{{!item.pic && !item.commonPic}}">
+              <image src='../../../resources/images/ic_no_image.png' class='dish-item-pic' mode='aspectFill' lazy-load></image>
+            </block>
+            <block wx:else>
+              <image src='{{item.pic?item.pic:item.commonPic}}' class='dish-item-pic' mode='aspectFill' lazy-load></image>
+            </block>
+            <view class='dish-item-content'>
+              <view class='name'>
+                <text>{{item.name}}</text>
+              </view>
+              <view class='price'>
+                <text>￥{{item.priceYuan}}</text>
+                <view class='price-panel'>
+                  <image style='width:46rpx;height:46rpx;' src='../../../resources/images/ic_like_thumbs.png'></image>
+                  <text>{{item.click_num}}</text>
+                </view>
+                </view>
+                <view class='address'>
+                  <text>{{item.canteenName}}{{item.floorName}}{{item.windowName}}</text>
+                </view>
+              </view>
+
+            <view>
+              <button class='default-button' style='width:100rpx;height:60rpx;line-height:60rpx;font-size:28rpx;' bindtap='onClickNum' data-did="{{item.id}}" data-type="1" data-item="{{item}}" data-index="{{index}}">赞</button>
+            </view>
+          </view>
+          </block>
+          <block wx:else>
+            <view style='text-align:center;font-size:30rpx;color:#919191'>
+              <text>暂无数据</text>
+            </view>
+          </block>
+        </scroll-view>
+      </swiper-item>
+      <swiper-item>
+         <scroll-view scroll-y style='height:{{height}}px'>
+          <block wx:if="{{wancan.length>0}}">
+            <view class='dish-item' wx:for="{{wancan}}" wx:key="{{index}}" data-did='{{item.id}}'>
+            <block wx:if="{{!item.pic && !item.commonPic}}">
+              <image src='../../../resources/images/ic_no_image.png' class='dish-item-pic' mode='aspectFill' lazy-load></image>
+            </block>
+            <block wx:else>
+              <image src='{{item.pic?item.pic:item.commonPic}}' class='dish-item-pic' mode='aspectFill' lazy-load></image>
+            </block>
+            <view class='dish-item-content'>
+              <view class='name'>
+                <text>{{item.name}}</text>
+              </view>
+              <view class='price'>
+                <text>￥{{item.priceYuan}}</text>
+                <view class='price-panel'>
+                  <image style='width:46rpx;height:46rpx;' src='../../../resources/images/ic_like_thumbs.png'></image>
+                  <text>{{item.click_num}}</text>
+                </view>
+                </view>
+                <view class='address'>
+                  <text>{{item.canteenName}}{{item.floorName}}{{item.windowName}}</text>
+                </view>
+              </view>
+
+            <view>
+              <button class='default-button' style='width:100rpx;height:60rpx;line-height:60rpx;font-size:28rpx;' bindtap='onClickNum' data-did="{{item.id}}" data-type="1" data-item="{{item}}" data-index="{{index}}">赞</button>
+            </view>
+          </view>
+          </block>
+          <block wx:else>
+            <view style='text-align:center;font-size:30rpx;color:#919191'>
+              <text>暂无数据</text>
+            </view>
+          </block>
+        </scroll-view>
+      </swiper-item>
+    </swiper>
+  </view>
+</view>

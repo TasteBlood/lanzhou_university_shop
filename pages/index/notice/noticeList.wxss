@@ -1,0 +1,111 @@
+/* pages/index/notice/noticeList.wxss */
+.container{
+  display: flex;
+  flex-direction: column;
+}
+
+.notice-item{
+  display: flex;
+  flex-direction: row;
+  padding: 20rpx;
+  background-color: white;
+  align-items: center;
+  height: 120rpx;
+  border-bottom: 4rpx solid #f1f1f1;
+}
+
+.notice-item:active{
+  background-color: #f1f1f1;
+}
+
+.notice-item image{
+  width: 120rpx;
+  height: 120rpx;
+  min-width: 120rpx;
+}
+
+.notice-content{
+  display: flex;
+  flex-direction: column;
+  margin-left: 20rpx;
+  align-content: center;
+}
+
+.notice-content .content{
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 32rpx;
+}
+.notice-content .time{
+  font-size: 26rpx;
+  margin-top: 20rpx;
+  color: #919191;
+  width: 100%;
+}
+
+.float-modal{
+  position: absolute;
+  left:0;
+  top:0;
+  width: 100%;
+  min-height: 100%;
+  z-index:2;
+  background: white;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+::-webkit-scrollbar{
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+.float-modal .title{
+  text-align: center;
+  margin-top: 10rpx;
+}
+.float-modal .time{
+  text-align: center;
+  font-size: 26rpx;
+  color:#717171;
+  margin: 10rpx;
+}
+
+.float-modal image{
+ width: 96%;
+}
+.float-modal .content{
+  line-height: 64rpx;
+  width: 96%;
+  text-indent: 80rpx;
+  font-size: 34rpx;
+  animation: fadeIn 1s linear;
+}
+.float-modal.hide{
+  display: none;
+  animation: fadeOut 1s linear;
+}
+
+@keyframes fadeIn{
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1
+  }
+}
+
+@keyframes fadeOut{
+  from{
+    opacity: 1;
+  }
+  to{
+    opacity: 0
+  }
+}

@@ -1,0 +1,136 @@
+<!--index.wxml-->
+<view class='container'>
+  <view class='notice-panel' wx:if="{{showNotice}}" bindtap='sckipToNotice'>
+    <image src='../../resources/images/notice.png'></image>
+    <view class='marquee'>
+      <view class='content'>
+        <text style='font-size:32rpx;'>{{notice.title}}</text><text style="display: inline-block; width: 20rpx;"></text>
+        <text style='font-size:32rpx;'>{{notice.title}}</text><text style="display: inline-block; width: 20rpx;"></text>
+        <text style='font-size:32rpx;'>{{notice.title}}</text><text style="display: inline-block; width: 20rpx;"></text>
+      </view>
+    </view>
+  </view>
+
+  <view class='content-panel'>
+    <view class='dish-query'>
+      <input type='text' maxlength='20' placeholder='请输入关键词查询菜品信息' bindinput='onInput'></input>
+      <button class='default-button' bindtap='onSearch'>查询</button>
+    </view>
+  </view>
+
+  <view class='menu-panel'>
+    <view class='first-line'>
+      <view class='menu-item' bindtap='skipToPage' data-page='like'>
+        <image src='../../resources/images/menu_like.png'></image>
+        <text>我要点赞</text>
+      </view>
+      <view class='menu-item' bindtap='skipToPage' data-page='new'>
+        <image src='../../resources/images/menu_new.png'></image>
+        <text>新品推选</text>
+      </view>
+    </view>
+    <view class='first-line'>
+      <view class='menu-item' bindtap='skipToPage' data-page='notice'>
+        <image src='../../resources/images/menu_notice.png'></image>
+        <text>食堂公告</text>
+      </view>
+      <view class='menu-item' bindtap='skipToPage' data-page='opinion'>
+        <image src='../../resources/images/menu_back.png'></image>
+        <text>意见反馈</text>
+      </view>
+    </view>
+  </view>
+
+  <view class='bottom-panel'>
+    <view style='text-align:center;padding:20rpx;'>
+      <text style='font-size:32rpx;color:#717171;'>------ 公众偏好 ------</text>
+    </view>
+    <!-- 点赞前三名菜品 -->
+    <view class='like-panel'>
+      <view class='like-title'>
+        <text>公众最爱菜品</text>
+      </view>
+      <view wx:if="{{dishList.length>0}}">
+        <view class='like-panel-content'>
+          <view class='like-panel-item' wx:for="{{dishList}}" wx:key="index" bindtap='onDishItemClick' data-item="{{item}}">
+                <view style='width:100%;text-align:center'>
+                  <block wx:if="{{!item.pic&&!item.commonPic}}">
+                    <image src='../../resources/images/ic_no_image.png' class='pic' mode='aspectFill'></image>
+                  </block>
+                  <block wx:else>
+                    <image src='{{item.pic?item.pic:item.commonPic}}' class='pic' mode='aspectFill'></image>
+                  </block>
+                </view>
+                <text class='name'>{{item.name}}</text>
+                <text style='font-size:26rpx;color:#515151;'>售价:<text class='price'>￥{{item.priceYuan}}</text></text>
+                <text style='font-size:22rpx;color:#717171;margin-top:4rpx;'>{{item.canteenName}}{{item.floorName}}{{item.windowName}}</text>
+          </view>
+        </view>
+      </view>
+          <view wx:else class='loading-text'>
+            <block wx:if="{{loadDish}}">
+              <text>最新数据正在统计，请稍后...</text>
+            </block>
+            <block wx:else>暂无数据</block>
+          </view>
+    </view>
+
+    <!-- 点赞前三名厨师 -->
+    <view class='like-panel'>
+      <view class='like-title'>
+        <text>公众最爱厨师</text>
+      </view>
+      <view wx:if="{{cookList.length>0}}">
+          <view class='like-panel-content'>
+            <view class='like-panel-item' wx:for="{{cookList}}" wx:key="index">
+              <view style='width:100%;text-align:center'>
+                <block wx:if="{{!item.staffDomain.pic}}">
+                  <image src='../../resources/images/ic_no_image.png' class='pic' mode="aspectFill"></image>
+                </block>
+                <block wx:else>
+                  <image src='{{item.staffDomain.pic}}' class='pic' mode='aspectFill'></image>
+                </block>
+              </view>
+              <text class='name'>{{item.staffDomain.name}}</text>
+            </view>
+        </view>
+      </view>
+      <view wx:else class='loading-text'>
+            <block wx:if="{{loadCook}}">
+              <text>最新数据正在统计，请稍后...</text>
+            </block>
+            <block wx:else>暂无数据</block>
+      </view>
+    </view>
+
+    <!-- 点赞前三名分菜员 -->
+    <view class='like-panel'>
+      <view class='like-title'>
+        <text>公众最爱分菜员</text>
+      </view>
+      <view wx:if="{{otherList.length>0}}">
+        <view class='like-panel-content'>
+      
+              <view class='like-panel-item' wx:for="{{otherList}}" wx:key="index">
+                <view style='width:100%;text-align:center'>
+                  <block wx:if="{{!item.staffDomain.pic}}">
+                    <image src='../../resources/images/ic_no_image.png' class='pic' mode="aspectFill"></image>
+                  </block>
+                  <block wx:else>
+                    <image src='{{item.staffDomain.pic}}' class='pic' mode='aspectFill'></image>
+                  </block>
+                </view>
+                  <text class='name'>{{item.staffDomain.name}}</text>
+              </view>
+      </view>
+      </view>
+      <view wx:else class='loading-text'>
+          <block wx:if="{{loadOther}}">
+            <text>最新数据正在统计，请稍后...</text>
+          </block>
+          <block wx:else>暂无数据</block>
+      </view>
+    </view>
+
+  </view>
+</view>

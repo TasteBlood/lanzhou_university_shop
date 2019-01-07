@@ -1,0 +1,123 @@
+/* pages/mine/orders/orders.wxss */
+.swiper-tab{
+    width: 100%;
+    border-bottom: 2rpx solid #ccc;
+    text-align: center;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    background-color: white;
+}
+.swiper-tab-item{
+    width: 30%; 
+    color:#414141;
+    font-size: 32rpx;
+    padding: 14rpx;
+}
+.selected{
+    color:#F65959;
+    border-bottom: 4rpx solid #F65959;
+}
+
+.order-item{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20rpx;
+}
+
+.order-item .top-info{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14rpx;
+  background-color: white;
+}
+.order-num{
+  font-size:30rpx;
+  color: #414141;
+}
+.delete-button{
+  width: 44rpx;
+  height: 44rpx;
+}
+
+
+::-webkit-scrollbar{
+width: 0;
+height: 0;
+color: transparent;
+}
+
+.order-info{
+  margin-top: 2rpx;
+  padding: 20rpx;
+  background-color: #f8f8f8;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  overflow-x: hidden;
+}
+
+.goods-pic{
+  width: 100rpx;
+  height: 100rpx;
+  min-width: 100rpx;
+  border: 1rpx solid #e1e1e1;
+}
+
+.mult-pic{
+  width: 100rpx;
+  height: 100rpx;
+  min-width: 100rpx;
+  border: 1rpx solid #e1e1e1;
+  margin-right: 10rpx;
+}
+
+.goods-name{
+  font-size: 30rpx;
+  margin-left: 20rpx;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.number-panel{
+  background-color: white;
+  padding: 20rpx;
+  text-align: right;
+  font-size: 30rpx;
+}
+
+.bottom-panel{
+  border-top: 1rpx #f1f1f1 solid;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 10rpx;
+  background-color: white;
+}
+.main-button{
+  border: 1rpx solid #ff4c4c;
+  font-size: 30rpx;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+  padding-top: 5rpx;
+  padding-bottom: 5rpx;
+  color: #ff4c4c;
+  border-radius: 40rpx;
+}
+
+.second-button{
+  border: 1rpx solid #c1c1c1;
+  font-size: 30rpx;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+  padding-top: 5rpx;
+  padding-bottom: 5rpx;
+  color: #919191;
+  border-radius: 40rpx;
+}

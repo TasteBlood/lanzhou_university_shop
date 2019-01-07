@@ -1,0 +1,42 @@
+<!--pages/mine/shoppingCar/shoppingCar.wxml-->
+<view class='wrapper'>
+  <view class='goods-content' wx:if="{{list.length>0}}">
+    <view class='goods-item' wx:for="{{list}}" wx:key="{{index}}" bindtap='onItemClick' data-did="{{item.mallGoodsDomain.id}}" bindlongpress='onItemLongClick' data-index="{{index}}" data-sid="{{item.id}}">
+      <checkbox-group bindchange="onItemCheck" data-index="{{index}}">
+        <checkbox color="#ff4c4c" checked='{{item.isCheck}}' id='check'></checkbox>
+      </checkbox-group>
+      <image src='{{item.pic}}' class='item-pic' lazy-load mode='aspectFill'></image>
+      <view class='item-content'>
+        <view class='goods-name'>
+          <text>{{item.mallGoodsDomain.name}}</text>
+        </view>
+        <view class='goods-price'>
+          <view>
+            <text class='price' wx:if="{{item.mallGoodsDomain.salesProductDomain}}">￥{{item.mallGoodsDomain.salesProductDomain.sales_yuan}}</text>
+            <text class='price' wx:else>￥{{item.mallGoodsDomain.sell_price_yuan}}</text>
+            <text class='number'>数量:{{item.product_num}}</text>
+          </view>
+          <view class='number-picker'>
+            <image src='../../../resources/images/minus.png' bindtap='onItemMinus' data-index="{{index}}" data-item="{{item}}" id='minus'></image>
+            <text maxlength='3' style='width:54rpx;font-size:28rpx;text-align:center' type='number' id='number'>{{item.product_num}}</text>
+            <image src='../../../resources/images/plus.png' bindtap='onItemPlus' data-index="{{index}}" data-item="{{item}}" id='plus'></image>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view wx:else style='text-align:center;font-size:30rpx;color:#717171;padding:20rpx;'>
+    <text>空空如也，赶紧去购物吧</text>
+  </view>
+  <view class='bottom-bar'>
+    <view class='all-price'>
+      <checkbox-group bindchange="checkAll">
+        <checkbox color="#ff4c4c" style='font-size:30rpx;' checked='{{checkAll}}'>全选</checkbox>
+      </checkbox-group>
+      <text style='margin-left:20rpx;font-size:30rpx;margin-top:10rpx'>合计:￥{{totalPrice}}</text>
+    </view>
+    <view class='calculate-button' bindtap='next'>
+      <text>去结算({{totalNum}})</text>
+    </view>
+  </view>
+</view>

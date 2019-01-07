@@ -1,0 +1,165 @@
+<!--pages/mine/orders/orders.wxml-->
+<view class='container'>
+  <view class='swiper-tab'>
+    <view class='swiper-tab-item {{currentTab===0?"selected":""}}' data-current="0" bindtap='onTabClick'>待支付</view>
+    <view class='swiper-tab-item {{currentTab===1?"selected":""}}' data-current="1" bindtap='onTabClick'>待收货</view>
+    <view class='swiper-tab-item {{currentTab===2?"selected":""}}' data-current="2" bindtap='onTabClick'>退款中</view>
+    <view class='swiper-tab-item {{currentTab===3?"selected":""}}' data-current="3" bindtap='onTabClick'>已完成</view>
+  </view>
+  <swiper current="{{currentTab}}" duration="200" bindchange="swiperTab" style='height:{{height}}px'>
+    <!-- 待支付 -->
+    <swiper-item>
+      <scroll-view style='height:{{height}}px' scroll-y bindscrolltolower="scrollToBottom" data-state="0">
+        <block wx:if="{{payOrders.length>0}}">
+          <view class='order-item' wx:for="{{payOrders}}" wx:key="{{index}}" bindtap='orderDetail' data-oid="{{item.id}}" data-index="{{index}}">
+            <view class='top-info'>
+              <text class='order-num'>订单号:{{item.order_num}}</text>
+              <image src='../../../resources/images/delete.png' class='delete-button' id='delete' bindtap='delOrder' data-item="{{item}}" data-index="{{index}}"></image>
+            </view>
+            <view class='order-info'>
+              <!-- single goods -->
+              <block wx:if="{{item.ordersProductDomainList.length<=1}}">
+                <image src='{{item.ordersProductDomainList[0].mallGoodsDomain.pic}}' class='goods-pic'></image>
+                <text class='goods-name'>{{item.ordersProductDomainList[0].mallGoodsDomain.name}}</text>
+              </block>
+              <!-- multiple goods only display one pic -->
+              <block wx:else>
+                <image class='mult-pic' wx:for="{{item.ordersProductDomainList}}" wx:key="{{inedx}}" src='{{item.mallGoodsDomain.pic}}'></image>
+              </block>
+            </view>
+            <!-- num panel -->
+            <view class='number-panel'>
+              <text>共{{item.totalNum}}件商品,需付款:<text style='font-size:34rpx;'>￥{{item.totalFee}}</text></text>
+            </view>
+            <!-- bottom panel -->
+            <view class='bottom-panel'>
+              <text class='main-button' id='pay' bindtap='goPay' data-item="{{item}}">去支付</text>
+            </view>
+          </view>
+        </block>
+        <block wx:else>
+          <view style='text-align:center;padding:20rpx;font-size:30rpx;color:#717171'>
+            <text>暂无订单</text>
+          </view>
+        </block>
+      </scroll-view>
+    </swiper-item>
+    <!-- 待收货 -->
+    <swiper-item>
+      <scroll-view style='height:{{height}}px' scroll-y bindscrolltolower="scrollToBottom" data-state="1">
+        <block wx:if="{{waitOrders.length>0}}">
+          <view class='order-item' wx:for="{{waitOrders}}" wx:key="{{index}}" bindtap='orderDetail' data-oid="{{item.id}}" data-index="{{index}}">
+            <view class='top-info'>
+              <text class='order-num'>订单号:{{item.order_num}}</text>
+              <text wx:if="{{item.order_stat===2}}" style='font-size:30rpx;color:#414141'>未发货</text>
+              <text wx:elif="{{item.order_stat===3}}" style='font-size:30rpx;color:#414141'>已发货</text>
+            </view>
+            <view class='order-info'>
+              <!-- single goods -->
+              <block wx:if="{{item.ordersProductDomainList.length<=1}}">
+                <image src='{{item.ordersProductDomainList[0].mallGoodsDomain.pic}}' class='goods-pic'></image>
+                <text class='goods-name'>{{item.ordersProductDomainList[0].mallGoodsDomain.name}}</text>
+              </block>
+              <!-- multiple goods only display one pic -->
+              <block wx:else>
+                <image class='mult-pic' wx:for="{{item.ordersProductDomainList}}" wx:key="{{inedx}}" src='{{item.mallGoodsDomain.pic}}'></image>
+              </block>
+            </view>
+            <!-- num panel -->
+            <view class='number-panel'>
+              <text>共{{item.totalNum}}件商品,已付款:<text style='font-size:34rpx;'>￥{{item.totalFee}}</text></text>
+            </view>
+            <!-- bottom panel -->
+            <view class='bottom-panel'>
+              <text class='main-button' style='margin-left:10rpx;' id='enter' bindtap='enterReceive' data-item="{{item}}" data-index="{{index}}">确定收货</text>
+              <text class='second-button' style='margin-left:10rpx;' wx:if="{{item.order_stat===2}}" id='refund' bindtap='refund' data-item="{{item}}" data-index="{{index}}">申请退款</text>
+              <text class='second-button' id='contact' bindtap='contact'>联系商家</text>
+            </view>
+          </view>
+        </block>
+        <block wx:else>
+          <view style='text-align:center;padding:20rpx;font-size:30rpx;color:#717171'>
+            <text>暂无订单</text>
+          </view>
+        </block>
+
+      </scroll-view>
+    </swiper-item>
+    <!-- 退款中 -->
+    <swiper-item>
+      <scroll-view style='height:{{height}}px' scroll-y bindscrolltolower="scrollToBottom" data-state="2">
+        <block wx:if="{{refundOrders.length>0}}">
+          <view class='order-item' wx:for="{{refundOrders}}" wx:key="{{index}}" bindtap='orderDetail' data-oid="{{item.id}}" data-index="{{index}}">
+            <view class='top-info'>
+              <text class='order-num'>订单号:{{item.order_num}}</text>
+              <text wx:if="{{item.order_stat===5}}" style='font-size:30rpx;color:#414141'>退款中</text>
+              <text wx:elif="{{item.order_stat===6}}" style='font-size:30rpx;color:#414141'>已退款</text>
+            </view>
+            <view class='order-info'>
+              <!-- single goods -->
+              <block wx:if="{{item.ordersProductDomainList.length<=1}}">
+                <image src='{{item.ordersProductDomainList[0].mallGoodsDomain.pic}}' class='goods-pic'></image>
+                <text class='goods-name'>{{item.ordersProductDomainList[0].mallGoodsDomain.name}}</text>
+              </block>
+              <!-- multiple goods only display one pic -->
+              <block wx:else>
+                <image class='mult-pic' wx:for="{{item.ordersProductDomainList}}" wx:key="{{inedx}}" src='{{item.mallGoodsDomain.pic}}'></image>
+              </block>
+            </view>
+            <!-- num panel -->
+            <view class='number-panel'>
+              <text>共{{item.totalNum}}件商品,退款:<text style='font-size:34rpx;'>￥{{item.totalFee}}</text></text>
+            </view>
+            <!-- bottom panel -->
+            <view class='bottom-panel'>
+              <text class='second-button' wx:if="{{item.order_stat===6}}" id='delete' bindtap='delOrder' data-item="{{item}}" data-index="{{index}}">删除订单</text>
+              <text class='second-button' wx:if="{{item.order_stat===5}}" id='contact' bindtap='contact'>联系商家</text>
+            </view>
+          </view>
+        </block>
+        <block wx:else>
+          <view style='text-align:center;padding:20rpx;font-size:30rpx;color:#717171'>
+            <text>暂无订单</text>
+          </view>
+        </block>
+      </scroll-view>
+    </swiper-item>
+    <!-- 已完成 -->
+    <swiper-item>
+      <scroll-view style='height:{{height}}px' scroll-y bindscrolltolower="scrollToBottom" data-state="3">
+        <block wx:if="{{finishOrders.length>0}}">
+          <view class='order-item' wx:for="{{finishOrders}}" wx:key="{{index}}" bindtap='orderDetail' data-oid="{{item.id}}" data-index="{{index}}">
+            <view class='top-info'>
+              <text class='order-num'>订单号:{{item.order_num}}</text>
+              <image src='../../../resources/images/delete.png' class='delete-button' id='delete' bindtap='delOrder' data-item="{{item}}" data-index="{{index}}"></image>
+            </view>
+            <view class='order-info'>
+              <!-- single goods -->
+              <block wx:if="{{item.ordersProductDomainList.length<=1}}">
+                <image src='{{item.ordersProductDomainList[0].mallGoodsDomain.pic}}' class='goods-pic'></image>
+                <text class='goods-name'>{{item.ordersProductDomainList[0].mallGoodsDomain.name}}</text>
+              </block>
+              <!-- multiple goods only display one pic -->
+              <block wx:else>
+                <image class='mult-pic' wx:for="{{item.ordersProductDomainList}}" wx:key="{{inedx}}" src='{{item.mallGoodsDomain.pic}}'></image>
+              </block>
+            </view>
+            <!-- num panel -->
+            <view class='number-panel'>
+              <text>共{{item.totalNum}}件商品,已付款:<text style='font-size:34rpx;'>￥{{item.totalFee}}</text></text>
+            </view>
+            <!-- bottom panel -->
+            <!-- <view class='bottom-panel'>
+              <text class='second-button' id='delete'>删除订单</text>
+            </view> -->
+          </view>
+        </block>
+        <block wx:else>
+          <view style='text-align:center;padding:20rpx;font-size:30rpx;color:#717171'>
+            <text>暂无订单</text>
+          </view>
+        </block>
+      </scroll-view>
+    </swiper-item>
+  </swiper>
+</view>

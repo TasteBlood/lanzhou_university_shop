@@ -1,0 +1,40 @@
+<!--pages/index/result/result.wxml-->
+<view class='container'>
+  <block wx:if="{{dishList.length>0}}">
+    <view class='dish-item' wx:for="{{dishList}}" wx:key="{{index}}" data-did='{{item.id}}'>
+      <block wx:if="{{!item.dishesList[0].pic && !item.pic}}">
+        <image src='../../../resources/images/ic_no_image.png' class='dish-item-pic' mode='aspectFill' lazy-load></image>
+      </block>
+      <block wx:else>
+        <image src='{{item.pic}}' class='dish-item-pic' mode='aspectFill' lazy-load></image>
+      </block>
+      <view class='dish-item-content'>
+        <view class='name'>
+          <text>{{item.name}}</text>
+          <text wx:if="{{item.type===1}}" class='dish-type'>(早餐)</text>
+          <text wx:elif="{{item.type===2}}" class='dish-type'>(午餐)</text>
+          <text wx:elif="{{item.type===3}}" class='dish-type'>(晚餐)</text>
+          <text wx:elif="{{item.type===4}}" class='dish-type'>(全天)</text>
+        </view>
+        <view class='price'>
+          <text>￥{{item.organDishesDomains[0].priceYuan}}</text>
+          <view class='price-panel'>
+            <image style='width:46rpx;height:46rpx;' src='../../../resources/images/ic_like_thumbs.png'></image>
+            <text>{{item.organDishesDomains[0].click_num}}</text>
+          </view>
+        </view>
+        <view class='address'>
+          <text>{{item.organDishesDomains[0].organWindowList[0].organFloorDomain.organCanteenDomain.name}}{{item.organDishesDomains[0].organWindowList[0].organFloorDomain.name}}{{item.organDishesDomains[0].organWindowList[0].name}}</text>
+        </view>
+
+      </view>
+
+      <view>
+        <button class='default-button' style='width:100rpx;height:60rpx;line-height:60rpx;font-size:28rpx;' bindtap='onClickNum' data-did="{{item.organDishesDomains[0].id}}" data-type="1" data-item="{{item}}" data-index="{{index}}">赞</button>
+      </view>
+    </view>
+  </block>
+  <block wx:else>
+    <text style='font-size:30rpx;margin:auto;color:#717171'>未查询到数据</text>
+  </block>
+</view>

@@ -1,0 +1,129 @@
+/* pages/mine/shoppingCar/shoppingCar.wxss */
+.calculate-button{
+  width: 240rpx;
+  height: 100rpx;
+  background-color: #ff4c4c;
+  display: flex;
+  flex: row;
+  justify-content: space-around;
+  align-items: center;
+  color: white;
+  font-size: 30rpx;
+}
+
+.calculate-button:active{
+  background-color: #da2a2a;
+}
+
+.all-price{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 20rpx;
+}
+
+.bottom-bar{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  border-top: 2rpx #e1e1e1 solid;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+checkbox .wx-checkbox-input{
+  height: 34rpx;
+  width: 34rpx;
+  color: #414141;
+}
+
+.goods-content{
+  margin-bottom: 110rpx;
+}
+
+.goods-item{
+  padding: 20rpx;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 15rpx;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.item-pic{
+  width: 120rpx;
+  height:120rpx;
+  min-width: 120rpx;
+  border: #e1e1e1 2rpx solid;
+  margin-left: 10rpx;
+}
+
+.item-content{
+  display: flex;
+  flex-direction: column;
+  justify-content:space-between;
+  margin-left: 10rpx;
+}
+.goods-name{
+  font-size: 30rpx;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+.goods-price{
+  margin-top: 20rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.price{
+  font-size: 30rpx;
+  color: #ff4c4c;
+}
+
+.number{
+  font-size: 30rpx;
+  color: #414141;
+  margin-left: 20rpx;
+}
+
+.number-picker{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: #d1d1d1 1rpx solid;
+  border-radius: 6rpx;
+}
+
+.number-picker image{
+  width: 36rpx;
+  height: 36rpx;
+  padding: 8rpx;
+}
+
+.number-picker image:active{
+  background-color: #e1e1e1;
+}
+
+.number-picker image:first-child{
+  margin-right: 10rpx;
+  border-right: #d1d1d1 1rpx solid;
+}
+
+.number-picker image:last-child{
+  margin-left: 10rpx;
+  border-left: #d1d1d1 1rpx solid;
+}
+

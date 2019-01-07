@@ -1,0 +1,5 @@
+<!--pages/auth/auth.wxml-->
+<view class='container'>
+  <text>兰州大学在线商城需要您进行微信授权</text>
+  <button open-type='getUserInfo' bindgetuserinfo='onGetUserInfo' lang='zh_CN' class='default-button'>微信授权</button>
+</view>

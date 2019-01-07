@@ -1,0 +1,14 @@
+<!--pages/mine/paying/paying.wxml-->
+<view class='container'>
+  <view class='top-info'>
+    <text style='font-size:34rpx;color:#414141;'>需支付:<text style='color:#ff4c4c'>￥{{totalFee}}</text></text>
+  </view>
+
+  <view style='text-align:center;margin-top:400rpx;'>
+    <text style='font-size:32rpx;color:#717171'>支付时，注意保护隐私哦</text>
+  </view>
+
+  <view class='bottom-bar' bindtap='buy'>
+    <text style="color:white;font-size:34rpx;">微信支付￥{{totalFee}}</text>
+  </view>
+</view>

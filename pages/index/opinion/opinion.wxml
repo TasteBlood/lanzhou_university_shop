@@ -1,0 +1,6 @@
+<!--pages/index/opinion/opinion.wxml-->
+<view class='container'>
+  <textarea placeholder='请输入反馈意见内容' maxlength='500' bindinput='onInputChange'></textarea>
+  <button class='default-button' bindtap='save'>提交</button>
+  <button style='color:#515151' bindtap='historyClick'>历史提交及服务提升计划</button>
+</view>

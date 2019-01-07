@@ -1,0 +1,50 @@
+{
+  "pages": [
+    "pages/shop/shop",
+    "pages/index/index",
+    "pages/mine/orders/orders",
+    "pages/mine/paying/paying",
+    "pages/mine/address/addressList",
+    "pages/mine/orderDetail/detail",
+    "pages/shop/goods/goodsDetail",
+    "pages/mine/fillOrder/fillOrder",
+    "pages/mine/shoppingCar/shoppingCar",
+    "pages/mine/collect/collect",
+    "pages/mine/address/add/addAddress",
+    "utils/login/login",
+    "pages/index/like/likeList",
+    "pages/index/opinion/opinion",
+    "pages/index/new/newList",
+    "pages/mine/mine",
+    "pages/index/notice/noticeList",
+    "pages/auth/auth",
+    "pages/index/opinion/history/history",
+    "pages/index/result/result",
+    "pages/mine/address/edit/editAddress"
+    
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#ff4c4c",
+    "navigationBarTitleText": "兰州大学在线商城",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "index": 0,
+        "pagePath": "pages/shop/shop",
+        "text": "商城",
+        "iconPath": "resources/images/rest_normal.png",
+        "selectedIconPath": "resources/images/rest_selected.png"
+      },
+      {
+        "index": 1,
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "resources/images/mine_normal.png",
+        "selectedIconPath": "resources/images/mine_selected.png"
+      }
+    ]
+  }
+}

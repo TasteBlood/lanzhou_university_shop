@@ -1,0 +1,202 @@
+/* pages/shop/shop.wxss */
+.gridview {
+  margin: 5rpx;
+  /* 以下两个可以根据需要自己决定是留着还是去掉 */
+  position: relative;
+  /* overflow: hidden; 
+  background: #eee; */
+}
+
+.gridview:before {
+  content: " ";
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+  -webkit-transform: scaleY(0.5);
+  transform: scaleY(0.5);
+}
+
+.gridview:after {
+  content: " ";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  /* 整体的左边距 */
+  margin-left:5px;
+  color: #d9d9d9;
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+  -webkit-transform: scaleX(0.5);
+  transform: scaleX(0.5);
+}
+
+.gridview-item {
+  margin: 1% 1% 1% 1%;
+  background: #eee;
+  /* 加上下面一行表示默认的分割线 *//* position: relative; */
+  float: left;
+  /* 内边距可根据实际情况添加 *//* padding: 5px 5px 5px 5px; */
+  width: 48%;
+  box-sizing: border-box;
+}
+
+.gridview-item:before {
+  content: " ";
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 1px;
+  bottom: 0;
+  margin-right: 5px;
+  color: #d9d9d9;
+  -webkit-transform-origin: 100% 0;
+  transform-origin: 100% 0;
+  -webkit-transform: scaleX(0.5);
+  transform: scaleX(0.5);
+}
+
+.gridview-item:after {
+  content: " ";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 1px;
+  color: #d9d9d9;
+  -webkit-transform-origin: 0 100%;
+  transform-origin: 0 100%;
+  -webkit-transform: scaleY(0.5);
+  transform: scaleY(0.5);
+}
+
+.gridview-item:active {
+  background-color: #ececec;
+}
+
+.gridview-item__bg {
+  background: #fff;
+  position: relative;
+  float: left;
+  padding: 0px 0px;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1rpx 10rpx 2rpx #d1d1d1;
+  border-radius: 8rpx;
+}
+
+.gridview-item__view {
+  display: flex;
+  justify-content: center;
+  font-size: 30rpx;
+  flex-direction: column;
+  width: 100%;
+}
+
+.goods-name{
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 28rpx;
+  width: 100%;
+  min-height: 80rpx;
+}
+
+.search-bar{
+  width: 100%;
+  height: 60rpx;
+  position: fixed;
+  left:0;
+  top:0;
+  background: #ff4c4c;
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 20rpx;
+}
+.search-bar .search-btn{
+  width: 42rpx;
+  height: 42rpx;
+}
+
+.drop-select{
+  color: white;
+  font-size: 26rpx;
+  width: 140rpx;
+  display: flex;
+  align-items: center;
+  padding: 10rpx;
+  border-radius: 10rpx;
+  margin-left: 10rpx;
+  text-align: center;
+  justify-content: center;
+}
+
+.drop-select .name{
+  width: 60rpx;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 28rpx;
+}
+
+.input{
+  width: 90%;
+  font-size: 30rpx;
+  color:white;
+  padding: 4rpx;
+}
+.search-view{
+  width: 60%;
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1rpx solid white;
+}
+
+.drop-modal{
+  position: absolute;
+  left:0;
+  top:80rpx;
+  width: 100%;
+  height:100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 3;
+  display: none;
+}
+
+.drop-modal .content{
+  background-color: white;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cate-item{
+  font-size: 30rpx;
+  color: #919191;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+  padding-top: 4rpx;
+  padding-bottom: 4rpx;
+  border: #919191 solid 1rpx;
+  border-radius: 34rpx;
+  margin-left: 20rpx;
+  margin-top: 10rpx;
+}
+
+.cate-item.active{
+  color: #ff4c4c;
+  border: #ff4c4c solid 1rpx;
+}
+
+.drop-modal.active{
+  display: block;
+}

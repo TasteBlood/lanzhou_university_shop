@@ -1,0 +1,21 @@
+/* pages/index/opinion/opinion.wxss */
+.container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+textarea{
+  background-color: white;
+  width: 100%;
+  padding: 20rpx;
+  font-size: 32rpx;
+  box-sizing: border-box;
+  height: 400rpx;
+}
+
+button{
+  width: 80%;
+  margin-top: 20rpx;
+  font-size: 34rpx;
+}

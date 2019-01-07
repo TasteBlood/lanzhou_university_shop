@@ -1,0 +1,77 @@
+<!--pages/mine/orders/detail/detail.wxml-->
+<view class='container'>
+  <view class='top-panel'>
+    <view style='display:flex;flex-direction:row;align-items:center'>
+      <image src='../../../resources/images/orders.png' style='width:48rpx;height:48rpx;'></image>
+      <text style='margin-left:20rpx;color:#ffffff;font-size:40rpx;'>
+        <block wx:if="{{order.order_stat===0}}">未支付</block>
+        <block wx:elif="{{order.order_stat===2}}">未发货</block>
+        <block wx:elif="{{order.order_stat===3}}">已发货</block>
+        <block wx:elif="{{order.order_stat===4}}">已完成</block>
+        <block wx:elif="{{order.order_stat===5}}">退款中</block>
+        <block wx:elif="{{order.order_stat===6}}">已退款</block>
+      </text>
+    </view>
+    <text style="color:#ffffff;font-size:32rpx;margin-top:20rpx;margin-left:70rpx;">订单金额:￥{{order.order_price_yuan}}</text>
+  </view>
+  <scroll-view scroll-y style='height:{{height}}px'>
+    <view class='address-panel'>
+      <text>收货人:{{order.receiveAddressDomain.receiveName}}</text>
+      <text>收货地址:{{order.receiveAddressDomain.provinceName}}{{order.receiveAddressDomain.cityName}}{{order.receiveAddressDomain.countyName}}{{order.receiveAddressDomain.detailInfo}}</text>
+      <text>联系电话:{{order.receiveAddressDomain.telNumber}}</text>
+    </view>
+    <view class='goods-panel'>
+      <view style='margin-top:20rpx;color:#717171;font-size:30rpx;margin-bottom:10rpx;margin-left:20rpx;'>
+        <text>商品信息</text>
+      </view>
+      <view class='goods-wrapper'>
+        <view class='goods-item' wx:for="{{order.ordersProductDomainList}}" wx:key="{{index}}">
+          <image class='goods-pic' mode='assceptFit' lazy-load src='{{item.mallGoodsDomain.pic}}'></image>
+          <view class='goods-info'>
+            <text class='goods-name'>{{item.mallGoodsDomain.name}}</text>
+            <text style='margin-top: 10rpx;'>数量:{{item.product_count}}<text style='margin-left: 20rpx;'>合计:<text style='color:#ff4c4c'>￥{{item.price_yuan}}</text></text>
+            </text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class='order-panel'>
+      <view>
+        <text>订单编号:</text>
+        <text>{{order.order_num}}</text>
+      </view>
+      <view>
+        <text>下单时间:</text>
+        <text>{{order.create_time}}</text>
+      </view>
+    </view>
+    <view class='bottom-bar'>
+      <!-- pay panel -->
+      <!-- 删除订单和支付 -->
+      <block wx:if="{{order.order_stat===0}}">
+        <text class='second-button' bindtap='deleteOrder'>删除订单</text>
+        <text class='main-button' style='margin-left:20rpx;' bindtap='goPay'>去支付</text>
+      </block>
+      <!-- wait receive -->
+      <!-- 退款 收货 联系商家 -->
+      <block wx:elif="{{order.order_stat===2||order.order_stat===3}}">
+        <text class='second-button' bindtap='contactShop'>联系商家</text>
+        <text class='second-button' wx:if="{{order.order_stat===2}}" style='margin-left:20rpx;' bindtap='applyRefund'>申请退款</text>
+        <text class='main-button' style='margin-left:20rpx;' bindtap='enterReceive'>确定收货</text>
+      </block>
+      <!-- refound -->
+      <!-- 联系商家 -->
+      <block wx:elif="{{order.order_stat===5||order.order_stat===6}}">
+        <text class='second-button' bindtap='contactShop' wx:if="{{order.order_stat===5}}">联系商家</text>
+        <text class='second-button' bindtap='deleteOrder' wx:if="{{order.order_stat===6}}" style='margin-left:20rpx;'>删除订单</text>
+      </block>
+      <!-- finish -->
+      <!-- 删除订单 -->
+      <block wx:elif="{{order.order_stat===4}}">
+        <text class='second-button' bindtap='deleteOrder'>删除订单</text>
+      </block>
+      <block wx:else></block>
+    </view>
+  </scroll-view>
+
+</view>

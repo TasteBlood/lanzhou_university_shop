@@ -1,0 +1,70 @@
+/* pages/mine/address/addressList.wxss */
+.wrapper{
+  display: flex;
+  flex-direction: column;
+}
+
+.float-button{
+  width: 100rpx;
+  height: 100rpx;
+  position: fixed;
+  bottom: 100rpx;
+  right:50rpx;
+}
+
+.address-item{
+  padding: 20rpx 20rpx 15rpx 20rpx;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10rpx;
+}
+.address-top-info{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.user-name{
+  font-size: 34rpx;
+}
+.user-mobile{
+  font-size: 32rpx;
+  margin-left: 20rpx;
+  color: #414141;
+}
+.address-detail{
+  color: #717171;
+  font-size: 30rpx;
+  margin-top: 15rpx;
+}
+.address-bottom{
+  display: flex;
+  flex-direction: row;
+  margin-top: 10rpx;
+  justify-content: space-between;
+  align-items: center;
+}
+
+checkbox .wx-checkbox-input{
+  height: 34rpx;
+  width: 34rpx;
+  color: #414141;
+}
+
+.bottom-left{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.bottom-right{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.bottom-right text{
+  color: #ff4c4c;
+  font-size: 32rpx;
+}
+.bottom-right text:last-child{
+  margin-left: 30rpx;
+}

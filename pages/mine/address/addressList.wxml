@@ -1,0 +1,32 @@
+<!--pages/mine/address/addressList.wxml-->
+<view class='wrapper'>
+  <image src='../../../resources/images/float_button.png' class='float-button' bindtap='addAddress'></image>
+  <block wx:if="{{addressList.length>0}}">
+    <view class='address-item' wx:for="{{addressList}}" wx:key="index" bindtap='onItemClick' data-item="{{item}}">
+      <view class='address-top-info'>
+        <text class='user-name'>{{item.receiveName}}</text>
+        <text class='user-mobile'>{{item.telNumber}}</text>
+      </view>
+      <view class='address-detail'>
+        <text>{{item.provinceName}}{{item.cityName}}{{item.countyName}}{{item.detailInfo}}</text>
+      </view>
+      <view style='height:2rpx;background-color:#f1f1f1;margin-top:10rpx;'></view>
+      <view class='address-bottom'>
+        <view class='bottom-left'>
+          <checkbox-group bindchange="onItemChange" data-item="{{item}}">
+            <checkbox color='#ff4c4c' checked="{{item.isdefault===1?true:false}}" style='font-size:30rpx' id='check'>设为默认</checkbox>
+          </checkbox-group>
+        </view>
+        <view class='bottom-right'>
+          <text bindtap='updateAddress' data-item="{{item}}" id='edit'>编辑</text>
+          <text bindtap='deleteAddress' data-did="{{item.id}}" data-index="{{index}}" id='delete'>删除</text>
+        </view>
+      </view>
+    </view>
+  </block>
+  <block wx:else>
+    <view style='text-align:center;padding:20rpx;'>
+      <text style='font-size:30rpx;color:#919191'>暂无数据</text>
+    </view>
+  </block>
+</view>

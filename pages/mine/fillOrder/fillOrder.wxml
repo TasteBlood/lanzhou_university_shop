@@ -1,0 +1,44 @@
+<!--pages/mine/fillOrder/fillOrder.wxml-->
+<view class='container'>
+  <!-- top address info -->
+  <view style='margin-bottom:100rpx;'>
+    <view class='address-panel' bindtap='onChooseAddress'>
+      <view style='width:90%'>
+        <view class='top'>
+          <text class='name'>{{address.receiveName}}</text>
+          <text class='phone'>{{address.telNumber}}</text>
+        </view>
+        <view class="detail">
+          <text>{{address.provinceName}}{{address.cityName}}{{address.countyName}}{{address.detailInfo}}</text>
+        </view>
+      </view>
+      <image src='../../../resources/images/next.png' style='width:32rpx;height:32rpx;margin-left:20rpx;'></image>
+    </view>
+    <view class='line'></view>
+    <!-- pay way info -->
+    <view class='pay-way'>
+      <text style='font-size:30rpx;color:#414141'>支付方式(仅支持微信支付)</text>
+      <text style='font-size:32rpx'>微信支付</text>
+    </view>
+    <!-- goods info -->
+    <view class='goods-panel'>
+      <view class='goods-item' wx:for="{{goods}}" wx:key="{{index}}">
+        <image src='{{item.pic}}' mode='aspectFill' lazy-load></image>
+        <view class='goods-info'>
+          <text class='goods-name'>{{item.mallGoodsDomain.name}}</text>
+          <view style='display:flex;flex-direction:row;align-items:center;margin-top:10rpx;justify-content:space-between;'>
+            <text style="font-size:30rpx;color:#ff4c4c" wx:if="{{item.mallGoodsDomain.salesProductDomain}}">￥{{item.mallGoodsDomain.salesProductDomain.sales_yuan}}</text>
+            <text style="font-size:30rpx;color:#ff4c4c" wx:else>￥{{item.mallGoodsDomain.sell_price_yuan}}</text>
+            <text style="font-size:30rpx;color:#717171;margin-left:20rpx;">数量:{{item.product_num}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='bottom-bar'>
+    <view class='price-info'>
+      总计:￥{{totalFee}}
+    </view>
+    <view class='btn' bindtap="submit">提交订单</view>
+  </view>
+</view>

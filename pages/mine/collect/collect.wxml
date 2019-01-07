@@ -1,0 +1,20 @@
+<!--pages/mine/collect/collect.wxml-->
+<view class='container'>
+  <block wx:if="{{list.length>0}}">
+    <view class='goods-item' wx:for="{{list}}" wx:key="{{index}}" bindtap='lookGoods' data-did="{{item.mallGoods.id}}">
+      <view class='goods-content'>
+        <image src='{{item.pic}}' class='pic' mode='asceptFill' lazy-load></image>
+        <text class='name'>{{item.mallGoods.name}}</text>
+      </view>
+      <view class='bottom-bar'>
+        <text id='delete' bindtap='onDelete' id='delete' data-did="{{item.id}}" data-index="{{index}}">删除</text>
+      </view>
+    </view>
+  </block>
+  <block wx:else>
+    <view style='text-align:center;font-size:30rpx;color:#919191;padding:20rpx;'>
+      <text>暂无收藏</text>
+    </view>
+  </block>
+
+</view>

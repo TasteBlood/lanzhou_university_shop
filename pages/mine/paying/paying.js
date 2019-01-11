@@ -1,4 +1,5 @@
 // pages/mine/paying/paying.js
+const $http = require('request.js');
 Page({
 
   /**
@@ -28,7 +29,41 @@ Page({
 
   },
   async buy(){
+    let res = await $http.pay(this.data.orderNum);
+    if(res.code===1){
+      let data = res.data;
+      wx.requestPayment({
+        timeStamp: data.timestamp,
+        nonceStr: data.nonceStr,
+        package: data.packages,
+        signType: 'MD5',
+        paySign: data.sign,
+        success:res=>{
+          wx.showToast({
+            title: '支付成功',
+            icon:'success'
+          });
+          setTimeout(()=>{
+            wx.navigateBack({
 
+            });
+          },500);
+        },
+        fail:e=>{
+          console.log(e);
+          wx.showToast({
+            title: '支付失败',
+            icon:'error'
+          })
+        }
+      });
+    }else{
+      wx.showToast({
+        title: res.msg?'支付失败':res.msg,
+        icon:'error'
+      })
+    }
+    console.log(res)
   },
   /**
    * 生命周期函数--监听页面显示

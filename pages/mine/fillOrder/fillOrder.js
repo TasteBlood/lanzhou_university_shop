@@ -55,7 +55,7 @@ Page({
       let goods = this.data.goods[0];
       res = await $http.buyNow(goods.mallGoodsDomain.id,goods.product_num,this.data.totalFee,this.data.address.id);
     }
-    console.log(res);
+    //console.log(res);
     if(res.code===1){
       //下单成功  {code: 1, msg: "下单成功", data: "1151_1546511321355"}
       let data = res.data;

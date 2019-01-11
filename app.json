@@ -35,8 +35,8 @@
         "index": 0,
         "pagePath": "pages/shop/shop",
         "text": "商城",
-        "iconPath": "resources/images/rest_normal.png",
-        "selectedIconPath": "resources/images/rest_selected.png"
+        "iconPath": "resources/images/shop_normal.png",
+        "selectedIconPath": "resources/images/shop_selected.png"
       },
       {
         "index": 1,

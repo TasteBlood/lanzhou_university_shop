@@ -1,5 +1,5 @@
-// const BASE_URL = "http://192.168.31.47:8040";
-const BASE_URL = "http://lzdxservice.sandianke.com";
+// const BASE_URL = "http://192.168.31.41:8040";
+const BASE_URL = "https://lzdxservice.sandianke.com";
 const http = {
   get: function(url, loading) {
     let isLoading = loading === undefined ? true : loading;

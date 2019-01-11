@@ -10,19 +10,19 @@ Page({
 
   skipToPage(data){
     console.log(data)
-    if (data.currentTarget.dataset.page ==='orderPage'){
+    if (data.currentTarget.dataset.page ==='orderPage'||data.target.dataset.page === 'orderPage'){
       wx.navigateTo({
         url: './orders/orders',
       });
-    } else if (data.currentTarget.dataset.page === 'shoppingCar'){
+    } else if (data.currentTarget.dataset.page === 'shoppingCar' || data.target.dataset.page === 'shoppingCar'){
         wx.navigateTo({
           url: './shoppingCar/shoppingCar',
         });
-    } else if (data.currentTarget.dataset.page === 'addressPage'){
+    } else if (data.currentTarget.dataset.page === 'addressPage' || data.target.dataset.page === 'addressPage'){
         wx.navigateTo({
           url: './address/addressList',
         });
-    } else if (data.currentTarget.dataset.page === 'collectPage'){
+    } else if (data.currentTarget.dataset.page === 'collectPage' || data.target.dataset.page === 'collectPage'){
         wx.navigateTo({
           url: './collect/collect',
         });

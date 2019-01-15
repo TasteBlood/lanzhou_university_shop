@@ -8,7 +8,8 @@ Page({
   data: {
     goods: [],
     address:{},
-    totalFee:0.00
+    totalFee:0.00,
+    form_id:0
   },
 
   /**
@@ -17,7 +18,15 @@ Page({
   onLoad: function (options) {
 
   },
+  onSubmit(e){
+    console.log(e.detail)
+    console.log('submit orderss')
+    this.setData({
+      form_id: e.detail.formId
+    });
 
+    this.submit();
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -49,11 +58,11 @@ Page({
       this.data.goods.map(e=>{
         ids.push(e.id);
       });
-      res = await $http.buyFromCar(ids.join(","),this.data.totalFee,this.data.address.id);
+      res = await $http.buyFromCar(ids.join(","),this.data.totalFee,this.data.address.id,this.data.form_id);
     }else{
       //这是直接购买
       let goods = this.data.goods[0];
-      res = await $http.buyNow(goods.mallGoodsDomain.id,goods.product_num,this.data.totalFee,this.data.address.id);
+      res = await $http.buyNow(goods.mallGoodsDomain.id,goods.product_num,this.data.totalFee,this.data.address.id,this.data.form_id);
     }
     //console.log(res);
     if(res.code===1){

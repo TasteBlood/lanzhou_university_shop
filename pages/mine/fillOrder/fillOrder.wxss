@@ -117,6 +117,7 @@
   padding-right: 40rpx;
   color: white;
   font-size: 32rpx;
+  border-radius: 0;
 }
 
 .btn:active{

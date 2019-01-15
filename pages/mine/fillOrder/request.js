@@ -14,9 +14,9 @@ const getDefaultAddress = async()=>{
 /**
  * 购物车结算
  */
-const buyFromCar = async(shoppings,totalPrice,addressId)=>{
+const buyFromCar = async(shoppings,totalPrice,addressId,form_id)=>{
   try {
-    return await http.post('/weixin/shoppingBuy', { shoppings: shoppings, total_price: totalPrice, receiveId: addressId }, true);
+    return await http.post('/weixin/shoppingBuy', { shoppings: shoppings, total_price: totalPrice, receiveId: addressId,form_id:form_id}, true);
   } catch (e) {
     return null;
   }
@@ -25,9 +25,9 @@ const buyFromCar = async(shoppings,totalPrice,addressId)=>{
 /**
  * 这是直接购买
  */
-const buyNow = async (gid, gnum, totalPrice, addressId) => {
+const buyNow = async (gid, gnum, totalPrice, addressId,form_id) => {
   try {
-    return await http.post('/weixin/buyNow', { product_id: gid, product_num: gnum, total_price: totalPrice, receiveId:addressId}, true);
+    return await http.post('/weixin/buyNow', { product_id: gid, product_num: gnum, total_price: totalPrice, receiveId:addressId,form_id:form_id}, true);
   } catch (e) {
     return null;
   }

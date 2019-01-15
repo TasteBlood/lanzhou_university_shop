@@ -38,7 +38,26 @@ Page({
   onReady: function () {
 
   },
+  //复制快递单号
+  copyExpressNum(e){
+    let express = e.currentTarget.dataset.num;
 
+    wx.setClipboardData({
+      data: express,
+      success:res=>{
+        wx.showToast({
+          title: '已复制到剪切板',
+          icon:'success'
+        });
+      },
+      fail:e=>{
+        wx.showToast({
+          title: '复制失败',
+          icon: 'error'
+        });
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面显示
    */

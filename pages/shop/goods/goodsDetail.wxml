@@ -2,7 +2,7 @@
 <view class='container'>
   <scroll-view class='main-content' scroll-y style='height:{{height}}px'>
     <!-- 上面的轮播图 -->
-    <swiper indicator-dots="true" indicator-color="rgba(0,0,0,0.2)" indicator-active-color="rgba(255,0,0,0.4)" autoplay duration='3000'>
+    <swiper indicator-dots="true" indicator-color="rgba(0,0,0,0.2)" indicator-active-color="rgba(255,0,0,0.4)" autoplay duration='300' interval='3000'>
       <swiper-item wx:for="{{goods.pics}}" wx:key="{{inedx}}">
         <image src='{{item}}' class='pic' mode='aspectFit' lazy-load></image>
       </swiper-item>
@@ -35,7 +35,7 @@
     </view>
     <view class='main-desc'>
       <text style='font-size:32rpx;color:#515151'>商品详情</text>
-      <rich-text nodes="{{goods.detail}}" style='width:100%;'></rich-text>
+      <rich-text nodes="{{detail}}" style='width:100%;'></rich-text>
     </view>
 
   </scroll-view>

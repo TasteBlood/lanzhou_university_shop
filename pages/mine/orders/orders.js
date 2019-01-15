@@ -438,18 +438,22 @@ Page({
     switch (this.data.currentTab) {
       case 0:
         this.data2.payPage = 1;
+        this.data2.noMorePay = false;
         this.loadOrders(this.data2.payPage, 0);
         break;
       case 1:
         this.data2.waitPage = 1;
+        this.data2.noMoreWait = false;
         this.loadOrders(this.data2.waitPage, 1);
         break;
       case 2:
         this.data2.refundPage = 1;
+        this.data2.noMoreRefund = false;
         this.loadOrders(this.data2.refundPage, 2);
         break;
       case 3:
         this.data2.finishPage = 1;
+        this.data2.noMoreFinish = false;
         this.loadOrders(this.data2.finishPage, 3);
         break;
     }

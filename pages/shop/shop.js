@@ -24,6 +24,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: async function(options) {
+    //如果有参数，进行页面跳转
+    if(options.oid){
+      //跳转到订单详情页
+      wx.navigateTo({
+        url: '../mine/orderDetail/detail?oid='+options.oid,
+      })
+    }
     //初始化tab颜色
     wx.setTabBarStyle({
       color: '#919191',

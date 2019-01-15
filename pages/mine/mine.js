@@ -15,7 +15,7 @@ Page({
         url: './orders/orders',
       });
     } else if (data.currentTarget.dataset.page === 'shoppingCar' || data.target.dataset.page === 'shoppingCar'){
-        wx.navigateTo({
+        wx.switchTab({
           url: './shoppingCar/shoppingCar',
         });
     } else if (data.currentTarget.dataset.page === 'addressPage' || data.target.dataset.page === 'addressPage'){

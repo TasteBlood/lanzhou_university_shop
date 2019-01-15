@@ -1,14 +1,19 @@
 <!--pages/mine/paying/paying.wxml-->
 <view class='container'>
+
   <view class='top-info'>
-    <text style='font-size:34rpx;color:#414141;'>需支付:<text style='color:#ff4c4c'>￥{{totalFee}}</text></text>
+    <text style='font-size:34rpx;color:#414141;'>支付金额</text>
+    <text style='color:#ff4c4c;font-size:38rpx;margin-top:20rpx;'>￥{{totalFee}}</text>
   </view>
 
-  <view style='text-align:center;margin-top:400rpx;'>
-    <text style='font-size:32rpx;color:#717171'>支付时，注意保护隐私哦</text>
-  </view>
-
-  <view class='bottom-bar' bindtap='buy'>
+  <view class='bottom-bar' bindtap='buy' wx:if="{{success===0}}">
     <text style="color:white;font-size:34rpx;">微信支付￥{{totalFee}}</text>
   </view>
+  <view class='bottom-bar' bindtap='buySuccess' wx:elif="{{success===1}}">
+    <text style="color:white;font-size:34rpx;">支付成功,点击返回</text>
+  </view>
+  <view class='bottom-bar' bindtap='buyError' wx:elif="{{success===-1}}">
+    <text style="color:white;font-size:34rpx;">支付失败,点击返回</text>
+  </view>
+
 </view>

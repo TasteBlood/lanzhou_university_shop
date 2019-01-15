@@ -1,6 +1,7 @@
 // pages/shop/goods/goodsDetail.js
 const $http = require('../request.js');
 const $address = require('../../mine/fillOrder/request.js');
+
 Page({
 
   /**
@@ -11,6 +12,7 @@ Page({
     goods: {},
     number: 1,
     phones:[],
+    detail:'',
     showModal:false
   },
   data2: {
@@ -22,11 +24,25 @@ Page({
    */
   onLoad: async function(options) {
     //console.log(options)
+    this.data2.gid = options.gid ? options.gid : 163;
+    //查询商品详情
+    let res = await $http.getGoodsById(this.data2.gid);
+    console.log(res)
+    if (res && res.data) {
+      let data = res.data;
+      data.pics = data.head_img_url.split(";");
+      this.setData({
+        goods: data,
+        detail:data.detail.replace(/\<img/g, '<img style="width:100%;height:auto;display:block" ')
+      });
+    }
+
+
     //初始化高度
     let self = this;
-    this.data2.gid = options.gid ? options.gid : 163;
+
     wx.getSystemInfo({
-      success: function(res) {
+      success: function (res) {
         wx.createSelectorQuery().select('.bottom-bar').boundingClientRect((rect) => {
           let topHeight = Number(rect.height);
           self.setData({
@@ -35,17 +51,6 @@ Page({
         }).exec();
       },
     });
-
-    //查询商品详情
-    let res = await $http.getGoodsById(this.data2.gid);
-    console.log(res)
-    if (res && res.data) {
-      let data = res.data;
-      data.pics = data.head_img_url.split(";");
-      this.setData({
-        goods: data
-      });
-    }
   },
   //点击联系人
   async onContactClick(e) {
@@ -159,9 +164,17 @@ Page({
   },
   //购物车点击
   onShopCarClick() {
-    wx.navigateTo({
+    // wx.navigateTo({
+    //   url: '../../mine/shoppingCar/shoppingCar',
+    // })
+
+    wx.switchTab({
       url: '../../mine/shoppingCar/shoppingCar',
     })
+
+    // wx.redirectTo({
+    //   url: '../../mine/shoppingCar/shoppingCar',
+    // })
   },
   closeModal(){
     this.setData({

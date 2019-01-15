@@ -15,6 +15,11 @@
     <text style="color:#ffffff;font-size:32rpx;margin-top:20rpx;margin-left:70rpx;">订单金额:￥{{order.order_price_yuan}}</text>
   </view>
   <scroll-view scroll-y style='height:{{height}}px'>
+    <view class='express-panel' wx:if="{{order.order_stat===3}}">
+      <text>{{order.express}}</text>
+      <text style='margin-left:10rpx;' wx:if="{{order.express !== '现场发货'}}">{{order.express_num}}</text>
+      <text style='margin-left:20rpx;color:#717171;font-size:28rpx;border:1rpx #d1d1d1 solid;border-radius:5rpx;padding:5rpx 10rpx 5rpx 10rpx' wx:if="{{order.express !== '现场发货'}}" bindtap='copyExpressNum' data-num="{{order.express_num}}">复制</text>
+    </view>
     <view class='address-panel'>
       <text>收货人:{{order.receiveAddressDomain.receiveName}}</text>
       <text>收货地址:{{order.receiveAddressDomain.provinceName}}{{order.receiveAddressDomain.cityName}}{{order.receiveAddressDomain.countyName}}{{order.receiveAddressDomain.detailInfo}}</text>

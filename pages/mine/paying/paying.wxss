@@ -1,11 +1,11 @@
 /* pages/mine/paying/paying.wxss */
 .top-info{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  justify-content: flex-end;
   background-color: white;
   padding: 20rpx;
+  margin-top: 10rpx;
 }
 
 .bottom-bar{

@@ -3,12 +3,12 @@
     "pages/shop/shop",
     "pages/index/index",
     "pages/mine/orders/orders",
-    "pages/mine/paying/paying",
     "pages/mine/address/addressList",
     "pages/mine/orderDetail/detail",
     "pages/shop/goods/goodsDetail",
     "pages/mine/fillOrder/fillOrder",
     "pages/mine/shoppingCar/shoppingCar",
+    "pages/mine/paying/paying",
     "pages/mine/collect/collect",
     "pages/mine/address/add/addAddress",
     "utils/login/login",
@@ -40,6 +40,13 @@
       },
       {
         "index": 1,
+        "pagePath": "pages/mine/shoppingCar/shoppingCar",
+        "text": "购物车",
+        "iconPath": "resources/images/car_normal.png",
+        "selectedIconPath": "resources/images/car_selected.png"
+      },
+      {
+        "index": 2,
         "pagePath": "pages/mine/mine",
         "text": "我的",
         "iconPath": "resources/images/mine_normal.png",

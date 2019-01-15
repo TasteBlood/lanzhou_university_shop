@@ -1,4 +1,5 @@
 /* pages/shop/goods/goodsDetail.wxss */
+
 swiper{
   width: 100%;
   height: 500rpx;

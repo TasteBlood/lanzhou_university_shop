@@ -39,6 +39,8 @@
     <view class='price-info'>
       总计:￥{{totalFee}}
     </view>
-    <view class='btn' bindtap="submit">提交订单</view>
+    <form style='' report-submit="true" bindsubmit='onSubmit' name="getFormId">
+      <button class='btn' form-type='submit'>提交订单</button>
+    </form>
   </view>
 </view>

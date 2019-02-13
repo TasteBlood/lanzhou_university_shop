@@ -46,7 +46,7 @@ Page({
         wx.createSelectorQuery().select('.bottom-bar').boundingClientRect((rect) => {
           let topHeight = Number(rect.height);
           self.setData({
-            height: Number(res.windowHeight) - topHeight
+            height: topHeight
           });
         }).exec();
       },

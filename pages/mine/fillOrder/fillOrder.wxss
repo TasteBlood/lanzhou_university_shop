@@ -34,7 +34,7 @@
   font-size: 30rpx;
   color: #717171;
   display: flex;
-  word-break: keep-all;
+  word-break: break-all;
   flex-direction: row;
   align-items: center;
 }

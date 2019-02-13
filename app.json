@@ -26,7 +26,7 @@
   "window": {
     "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#ff4c4c",
-    "navigationBarTitleText": "兰州大学在线商城",
+    "navigationBarTitleText": "兰大文创店",
     "navigationBarTextStyle": "white"
   },
   "tabBar": {
@@ -34,7 +34,7 @@
       {
         "index": 0,
         "pagePath": "pages/shop/shop",
-        "text": "商城",
+        "text": "文创店",
         "iconPath": "resources/images/shop_normal.png",
         "selectedIconPath": "resources/images/shop_selected.png"
       },
